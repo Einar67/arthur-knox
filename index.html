@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🩸 gothic confession · arthur knox</title>
+    <!-- fonts & gothic vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            background-image: 
+                linear-gradient(rgba(15, 0, 0, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 0, 0, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            padding: 1.5rem;
+            position: relative;
+            color: #e5e3e3;
+        }
+
+        /* gothic ornament overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, rgba(120, 0, 0, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(40, 0, 0, 0.15) 0%, transparent 60%);
+            z-index: 0;
+        }
+
+        .confession-container {
+            max-width: 750px;
+            width: 100%;
+            background: #111111e0;
+            backdrop-filter: blur(8px);
+            border: 2px solid #4a0f0f;
+            box-shadow: 0 0 40px rgba(160, 0, 0, 0.3), inset 0 0 20px #1a0000;
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            position: relative;
+            z-index: 10;
+            transition: all 0.25s ease;
+        }
+
+        /* vampire / goth ornaments */
+        .confession-container::after {
+            content: "🦇";
+            position: absolute;
+            bottom: -15px;
+            right: 20px;
+            font-size: 2.5rem;
+            opacity: 0.3;
+            color: #8b0000;
+            transform: rotate(10deg);
+        }
+
+        .confession-container::before {
+            content: "⚰️";
+            position: absolute;
+            top: -18px;
+            left: 15px;
+            font-size: 2.2rem;
+            opacity: 0.25;
+            filter: grayscale(100%);
+        }
+
+        /* gothic filigree */
+        .gothic-border {
+            border-top: 2px solid #6b1a1a;
+            border-bottom: 2px solid #6b1a1a;
+            padding: 0.8rem 0;
+            margin: 1.8rem 0 1.2rem;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #b77b7b;
+            word-spacing: 8px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: #dcdcdc;
+            text-shadow: 2px 2px 0px #2f0000;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            border-left: 6px solid #a52a2a;
+            padding-left: 1.4rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .button-goth {
+            background: transparent;
+            border: 2px solid #8b1a1a;
+            color: #f0e6e6;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            padding: 1.2rem 3rem;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            background-color: #1c0a0ae0;
+            box-shadow: 0 0 25px #4d0000, inset 0 0 8px #2f0000;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 1.5rem 0;
+            border-radius: 0px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .button-goth:hover {
+            background-color: #2e0a0a;
+            border-color: #c22d2d;
+            box-shadow: 0 0 35px #a10000, inset 0 0 12px #6b0000;
+            color: #fff4f4;
+            letter-spacing: 14px;
+        }
+
+        .button-goth.small {
+            font-size: 1.2rem;
+            padding: 0.6rem 1.8rem;
+            letter-spacing: 4px;
+            max-width: 280px;
+        }
+
+        /* letter / confession text */
+        .confession-text {
+            background: #0d0909b3;
+            border: 1px solid #4d1f1f;
+            padding: 2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            box-shadow: inset 0 0 25px #140101, 0 6px 12px #0000004d;
+            color: #dbd1d1;
+            border-left: 8px solid #8b0000;
+            font-style: normal;
+            text-align: left;
+        }
+
+        .confession-text i {
+            color: #bf7b7b;
+        }
+
+        .alucard-photos {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0 10px;
+            flex-wrap: wrap;
+        }
+
+        .alucard-card {
+            flex: 1 1 180px;
+            max-width: 200px;
+            border: 2px solid #631c1c;
+            background: #0f0404;
+            padding: 6px;
+            box-shadow: 0 0 20px #2f0000;
+        }
+
+        .alucard-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(30%) contrast(120%) brightness(90%);
+            border: 1px solid #5a2a2a;
+        }
+
+        .alucard-card p {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            margin-top: 6px;
+            color: #b37b7b;
+            letter-spacing: 2px;
+        }
+
+        .music-section {
+            background: #0d0707e0;
+            border: 1px dashed #7a3a3a;
+            padding: 1.8rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .song-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .band-item {
+            font-family: 'Cinzel', serif;
+            background: #1f0b0b;
+            padding: 10px 18px;
+            border-left: 5px solid #b22222;
+            color: #ececec;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            box-shadow: 2px 2px 0 #3d0000;
+        }
+
+        .spotify-link {
+            display: inline-block;
+            margin-top: 20px;
+            background: #1e0a0a;
+            padding: 14px 28px;
+            border: 2px solid #8b0000;
+            color: #f2dfdf;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: 0.2s;
+            box-shadow: 0 0 12px #5e0000;
+            word-break: break-all;
+        }
+
+        .spotify-link:hover {
+            background: #360e0e;
+            border-color: #b33;
+            box-shadow: 0 0 24px #a10000;
+        }
+
+        .gratitude-block {
+            background: #0e0505;
+            border: 2px solid #631c1c;
+            padding: 2rem 2rem;
+            font-size: 1.15rem;
+            margin: 2.2rem 0 1rem;
+            box-shadow: inset 0 0 30px #170101, 0 8px 0 #2b0000;
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .visible-section {
+            display: block;
+        }
+
+        .flex-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .vampire-quote {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.9rem;
+            color: #b33c3c;
+            opacity: 0.9;
+            margin-bottom: 5px;
+            transform: rotate(-1deg);
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b1a1a, #1a0101, #8b1a1a, transparent);
+            margin: 20px 0;
+        }
+
+        /* responsive */
+        @media (max-width: 550px) {
+            .confession-container { padding: 1.5rem; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="confession-container">
+    <!-- INTRO / BUTTON SECTION (visible at start) -->
+    <div id="introSection" class="flex-center">
+        <div class="vampire-quote">🩸 f o r e v e r · n i g h t 🩸</div>
+        <div style="font-size: 1.1rem; color: #ab8989; margin-bottom: 10px; letter-spacing: 4px;">— confessional —</div>
+        <button id="forYouBtn" class="button-goth">[for you]</button>
+        <div style="margin-top: 25px; font-style: italic; color: #ae7c7c; border-top: 1px solid #4f1a1a; padding-top: 20px; width: 100%;">
+            <span>🦇 “the heart wants what it wants” 🦇</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONFESSION CONTENT (hidden until button press) -->
+    <div id="mainContent" class="hidden-section">
+        <!-- Letter section with feelings -->
+        <h1>🜍 arthur knox 🜍</h1>
+        <div class="confession-text">
+            <p style="font-size:1.4rem; font-family:'Cinzel'; margin-bottom:15px;">☙</p>
+            Hello, Arthur Knox. I'm so sorry if this is a bit confusing to receive. Ehehe, I'm a bit of a mess. I made this website about a month and a half ago, perhaps? Ah, I don't quite recall. The main thing is, it was just two days before I told you how I felt. It was just to, um, gently reaffirm my feelings for you.<br><br>
+            Okay, well, I do like you. Yes, you probably already know. But I think it's become more than just a usual feeling. <i>I really, really like you.</i> I'm even a little bewildered by it. We don't talk much. But I still can't help but feel this way.<br><br>
+            I know this is all a bit much, and maybe silly, and strange. Because we don't really know each other, but I'm reacting like this. I worry that you're actually quite uncomfortable with me but are just being polite. I often tell my friends that I have a very strong fondness for you. They suggest that I should ask you to go on dates. I hesitate, and say that it's probably not the best choice or action when we don't truly know each other yet.<br><br>
+            I'm quite embarrassed to say this, but I think I may have really fallen in love with you, Arthur. I'm also confused. I can't seem to describe my feelings very well.
+        </div>
+
+        <!-- Alucard photos (2) -->
+        <div class="alucard-photos">
+            <div class="alucard-card">
+                <!-- Alucard from Castlevania (placeholders, using lore-friendly images) -->
+                <img src="https://images.pexels.com/photos/2775194/pexels-photo-2775194.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop&dpr=2" alt="gothic vampire silhouette 1" style="object-fit: cover; height: 160px;">
+                <p>⚰️ ALUCARD · NIGHT ⚰️</p>
+            </div>
+            <div class="alucard-card">
+                <img src="https://images.pexels.com/photos/5721847/pexels-photo-5721847.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop&dpr=2" alt="vampire gothic 2" style="object-fit: cover; height: 160px;">
+                <p>🦇 SHADOW · LORD 🦇</p>
+            </div>
+        </div>
+        <p style="text-align:right; font-size:0.9rem; opacity:0.7; margin-top:-5px;">— alucard, castlevania essence —</p>
+        
+        <div class="gothic-border">⁂ ✠ ⁂</div>
+
+        <!-- MUSIC / BANDS HE LIKES -->
+        <div class="music-section">
+            <h3 style="font-size:1.6rem; margin-bottom:0.5rem;">🜁 his dark anthems 🜁</h3>
+            <p style="margin-bottom: 10px; font-style: italic; color:#cdb0b0;">Here are some bands and songs that you like, sorry if it's cheesy! ;b</p>
+            
+            <div class="song-grid">
+                <div class="band-item">THE NEIGHBOURHOOD</div>
+                <div class="band-item">CHASE ATLANTIC</div>
+            </div>
+            <!-- extra moody details -->
+            <div style="display:flex; justify-content:center; gap:20px; color:#9e6b6b; margin: 10px 0 5px;">
+                <span>♫ sweater weather · nervous ♫</span>
+            </div>
+
+            <!-- Spotify playlist link -->
+            <a class="spotify-link" href="https://open.spotify.com/playlist/0h3JF56XiVPslIU0jiznVS?si=7RKMoxiZSVCoKUTSLq5jqg&pi=u7QkrQAxT-WpG" target="_blank" rel="noopener">
+                🎧 OPEN VAMPIRE PLAYLIST 🎧<br>
+                <span style="font-size:0.8rem; word-break:break-all;">spotify: nocturnal confessions</span>
+            </a>
+        </div>
+
+        <!-- APOLOGY & GRATITUDE -->
+        <div class="gratitude-block">
+            <p style="font-size:1.5rem; font-family:'Cinzel'; margin-bottom:10px;">🩸 absolution 🩸</p>
+            So... Please forgive me. I'm so sorry for liking you so much. I know this is a bit much. But you have every right to dislike me for my strong feelings. You can tell everyone that I'm a crazy person who has a crush on you, Arthur.<br><br>
+            Thank you for acknowledging my feelings before. You're a very kind person. I truly appreciate you, Arthur, it's all a bit overwhelming.<br><br>
+            <span style="display:block; text-align:right; font-size:1.6rem; font-family:'UnifrakturMaguntia'; color:#b33;">Again, I'm sorry and thank you</span>
+        </div>
+        
+        <hr>
+        <div style="display:flex; justify-content:center; margin: 10px 0 5px;">
+            <span style="font-family:'Cinzel'; color:#835e5e;">— eternal dusk · for arthur —</span>
+        </div>
+
+        <!-- Navigation back to button (in case) -->
+        <div class="nav-row">
+            <button id="backToIntroBtn" class="button-goth small" style="margin:0;">◂ RETURN</button>
+            <span style="color:#6e3a3a; align-self:center;">†</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const introSection = document.getElementById('introSection');
+        const mainContent = document.getElementById('mainContent');
+        const forYouBtn = document.getElementById('forYouBtn');
+        const backBtn = document.getElementById('backToIntroBtn');
+
+        // initial state: intro visible, main hidden
+        function showIntro() {
+            introSection.classList.remove('hidden-section');
+            introSection.classList.add('flex-center');
+            mainContent.classList.add('hidden-section');
+            mainContent.classList.remove('visible-section');
+        }
+
+        function showMain() {
+            introSection.classList.add('hidden-section');
+            introSection.classList.remove('flex-center');
+            mainContent.classList.remove('hidden-section');
+            mainContent.classList.add('visible-section');
+        }
+
+        // press [for you] → reveal everything
+        forYouBtn.addEventListener('click', function(e) {
+            showMain();
+        });
+
+        // back button returns to the first button
+        backBtn.addEventListener('click', function(e) {
+            showIntro();
+        });
+
+        // ensure that on load, intro is visible, main hidden.
+        // but we set classes manually in html, but to be safe:
+        window.addEventListener('DOMContentLoaded', function() {
+            // double-check initial visibility
+            if (!introSection.classList.contains('hidden-section') && mainContent.classList.contains('hidden-section')) {
+                // good
+            } else {
+                // fallback
+                introSection.classList.remove('hidden-section');
+                introSection.classList.add('flex-center');
+                mainContent.classList.add('hidden-section');
+            }
+        });
+
+        // tiny extra: gothic click effect
+        const buttons = document.querySelectorAll('.button-goth');
+        buttons.forEach(b => {
+            b.addEventListener('mousedown', () => {
+                document.body.style.backgroundColor = '#130101';
+            });
+            b.addEventListener('mouseup', () => {
+                document.body.style.backgroundColor = '#0b0b0b';
+            });
+            b.addEventListener('mouseleave', () => {
+                document.body.style.backgroundColor = '#0b0b0b';
+            });
+        });
+
+        // Also, the images are placeholder but themed gothic; 
+        // they fit "alucard from castlevania" mood — dark, vampiric.
+        // if we want more accuracy we note that, but it's aesthetic.
+    })();
+</script>
+<!-- additional vampire details: small corner crosses -->
+<div style="position:fixed; bottom:10px; left:10px; color:#3f1a1a; font-size:2rem; opacity:0.2; z-index:1;">✠</div>
+<div style="position:fixed; top:20px; right:25px; color:#5e1e1e; font-size:2.2rem; opacity:0.15; z-index:1;">🜍</div>
+</body>
+</html>
